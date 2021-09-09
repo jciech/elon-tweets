@@ -2,12 +2,17 @@
 name = "elon-tweets"
 version = "0.1.0"
 description = ""
-authors = ["Jan Ciechowski <jan@multiply.ai>"]
+authors = ["Jan Ciechowski <janciechowski@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
 numpy = "^1.20.0"
 python-twitter = "^3.5"
+google-cloud-datastore = "^2.1.0"
+marshmallow = "^3.13.0"
+black = "^21.8b0"
+mypy = "^0.910"
+Flask = "^2.0.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
