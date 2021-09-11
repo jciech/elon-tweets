@@ -8,5 +8,5 @@ def mock_load_secrets(*args, **kwargs):
 
 def test_create_app():
     with mock.patch("app.app.load_secrets", mock_load_secrets):
-        app = create_app()
+        app = create_app('testing-environment')
         assert app is not None

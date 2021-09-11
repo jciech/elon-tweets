@@ -19,9 +19,17 @@ def load_secrets(project_id, secrets):
     return secret_vars
 
 
-def create_app():
-    app = Flask(__name__)
-    _, project_id = google.auth.default()
+class App(Flask):
+    def __init__(self, project_id, *args, **kwargs):
+        self.project_id = project_id
+        super().__init__(*args, **kwargs)
+
+
+def create_app(project_id):
+    if project_id is None:
+        _, project_id = google.auth.default()
+
+    app = App(project_id, __name__)
 
     secret_keys = ["TWITTER_API_BEARER_TOKEN", "TWITTER_API_KEY", "TWITTER_API_SECRET"]
     secrets = load_secrets(
@@ -32,8 +40,8 @@ def create_app():
     for key, secret in secrets.items():
         app.config[key] = secret
 
-    @app.route("/debug")
-    def debugging():
-        breakpoint()
+    # @app.route("/debug")
+    # def debugging():
+    #     breakpoint()
 
     return app
