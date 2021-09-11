@@ -4,10 +4,10 @@ from flask import Flask
 from google.cloud import secretmanager_v1 as secretmanager
 
 
-def get_secret_value(client, project, secret, version='latest'):
-    name = f'projects/{project}/secrets/{secret}/versions/{version}'
-    response = client.access_secret_version(request={'name': name})
-    return response.payload.data.decode('UTF-8')
+def get_secret_value(client, project, secret, version="latest"):
+    name = f"projects/{project}/secrets/{secret}/versions/{version}"
+    response = client.access_secret_version(request={"name": name})
+    return response.payload.data.decode("UTF-8")
 
 
 def load_secrets(project_id, secrets):
@@ -20,19 +20,13 @@ def load_secrets(project_id, secrets):
     return secret_vars
 
 
-
 def create_app():
     app = Flask(__name__)
-    _ ,project_id = google.auth.default()
+    _, project_id = google.auth.default()
 
-    logging.info(f'Running app for project {project_id}.')
+    logging.info(f"Running app for project {project_id}.")
 
-
-    secret_keys = [
-    "TWITTER_API_BEARER_TOKEN",
-    "TWITTER_API_KEY",
-    "TWITTER_API_SECRET"
-    ]
+    secret_keys = ["TWITTER_API_BEARER_TOKEN", "TWITTER_API_KEY", "TWITTER_API_SECRET"]
     secrets = load_secrets(
         project_id,
         secret_keys,
@@ -41,6 +35,10 @@ def create_app():
     for key, secret in secrets.items():
         app.config[key] = secret
 
-    logging.info('Secrets loaded.')
+    @app.route("/debug")
+    def debugging():
+        breakpoint()
+
+    logging.info("Secrets loaded.")
 
     return app
