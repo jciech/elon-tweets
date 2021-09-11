@@ -22,7 +22,6 @@ jobs:
       - name: Install poetry
         run: |
           pip install poetry
-          poetry config virtualenvs.create false
           poetry install
 
       - name: Run tests
