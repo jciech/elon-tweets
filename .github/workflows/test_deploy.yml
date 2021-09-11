@@ -31,8 +31,8 @@ jobs:
       
       - name: Run type checking
         run: |
-          export MYPYPATH=stubs
-          poetry run mypy .
+          export MYPYPATH=/home/runner/elon-tweets/elon-tweets/stubs
+          poetry run mypy elon_tweets
         
       
       - name: Reformat code
