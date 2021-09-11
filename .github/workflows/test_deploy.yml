@@ -30,7 +30,9 @@ jobs:
       
       
       - name: Run type checking
-        run: poetry run mypy .
+        run: |
+          export MYPYPATH=stubs
+          poetry run mypy .
         
       
       - name: Reformat code
