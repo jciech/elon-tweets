@@ -21,6 +21,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install poetry
         run: |
+          rm -rf /home/runner/.cache/pypoetry/virtualenvs/elon-tweets-26UrJ_qR-py3.8/
           pip install poetry
           poetry install
 
