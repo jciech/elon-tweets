@@ -1,4 +1,3 @@
-import logging
 import google.auth
 from flask import Flask
 from google.cloud import secretmanager_v1 as secretmanager
@@ -24,8 +23,6 @@ def create_app():
     app = Flask(__name__)
     _, project_id = google.auth.default()
 
-    logging.info(f"Running app for project {project_id}.")
-
     secret_keys = ["TWITTER_API_BEARER_TOKEN", "TWITTER_API_KEY", "TWITTER_API_SECRET"]
     secrets = load_secrets(
         project_id,
@@ -38,7 +35,5 @@ def create_app():
     @app.route("/debug")
     def debugging():
         breakpoint()
-
-    logging.info("Secrets loaded.")
 
     return app

@@ -15,7 +15,6 @@ mypy = "^0.910"
 Flask = "^2.0.1"
 google-auth = "^2.0.2"
 logger = "^1.4"
-logging = "^0.4.9"
 google-cloud = "^0.34.0"
 google-cloud-secret-manager = "^2.7.0"
 
