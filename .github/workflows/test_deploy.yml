@@ -42,5 +42,5 @@ jobs:
         with:
           credentials: ${{  secrets.GCP_CREDENTIALS  }}
           promote: true
-          deliverables: "../elon_tweets/app.yaml"
+          deliverables: "elon_tweets/app.yaml"
 
