@@ -40,8 +40,8 @@ def create_app(project_id):
     for key, secret in secrets.items():
         app.config[key] = secret
 
-    # @app.route("/debug")
-    # def debugging():
-    #     breakpoint()
+    @app.route("/debug")
+    def debugging():
+        return "<p> Hello World! </p>"
 
     return app
