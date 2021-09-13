@@ -24,6 +24,10 @@ jobs:
           rm -rf /home/runner/.cache/pypoetry/virtualenvs/elon-tweets-26UrJ_qR-py3.8/
           pip install poetry
           poetry install
+          poetry export -f requirements.txt --without-hashes > elon_tweets/requirements.txt
+        artefacts:
+          elon_tweets/requirements.txt
+
 
       - name: Run tests
         run: poetry run pytest
