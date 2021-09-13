@@ -1,15 +1,18 @@
-import grpc
 from google.auth import environment_vars as environment_vars, exceptions as exceptions
-from google.oauth2 import service_account as service_account
-from typing import Any
+from typing import Any, Optional
 
-new_exc: Any
+class AuthMetadataPlugin:
+    def __init__(self, credentials: Any, request: Any) -> None: ...
+    def __call__(self, context: Any, callback: Any) -> None: ...
 
-class AuthMetadataPlugin(grpc.AuthMetadataPlugin):
-    def __init__(self, credentials, request, default_host: Any | None = ...) -> None: ...
-    def __call__(self, context, callback) -> None: ...
-
-def secure_authorized_channel(credentials, request, target, ssl_credentials: Any | None = ..., client_cert_callback: Any | None = ..., **kwargs): ...
+def secure_authorized_channel(
+    credentials: Any,
+    request: Any,
+    target: Any,
+    ssl_credentials: Optional[Any] = ...,
+    client_cert_callback: Optional[Any] = ...,
+    **kwargs: Any
+): ...
 
 class SslCredentials:
     def __init__(self) -> None: ...
