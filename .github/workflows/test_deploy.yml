@@ -35,3 +35,12 @@ jobs:
       
       - name: Reformat code
         run: poetry run black .
+
+
+      - name: Deploy API
+        uses: google-github-actions/deploy-appengine@main
+        with:
+          credentials: ${{  secrets.GCP_CREDENTIALS  }}
+          promote: true
+          deliverables: "../elon_tweets/app.yaml"
+
